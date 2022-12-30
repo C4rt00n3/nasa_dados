@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const StyledModalOption = styled.div`
   height: 100%;
   width: 35%;
-  min-width: 400px;
+  min-width: 320px;
   max-width: 500px;
 
   display: flex;
@@ -16,6 +16,10 @@ export const StyledModalOption = styled.div`
 
   gap: 30px;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+
+  @media (min-width: 500px) {
+    min-width: 450px;
+  }
 
   .header_modal {
     height: 130px;

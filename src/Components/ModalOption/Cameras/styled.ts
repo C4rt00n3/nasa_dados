@@ -7,10 +7,17 @@ export const StyledDivCameras = styled.div`
   gap: 15px;
   ul {
     width: 90%;
+    max-height: 250px;
+
+    overflow: auto;
+
     display: flex;
     flex-wrap: wrap;
 
     gap: 10px;
+    @media (min-width: 500px) {
+      max-height: 100%;
+    }
   }
   .blue {
     background-color: var(--Information);
@@ -20,8 +27,12 @@ export const StyledDivCameras = styled.div`
     padding: 10px;
     border-radius: 24px;
 
-    max-width: 130px;
+    max-width: 100px;
     max-height: 40px;
+
+    @media (min-width: 600px) {
+      max-width: 150px;
+    }
 
     display: flex;
     align-items: center;
@@ -30,7 +41,6 @@ export const StyledDivCameras = styled.div`
     :hover {
       background-color: var(--Information);
       opacity: 60%;
-      max-width: 150px;
     }
   }
   .normal {
@@ -42,6 +52,6 @@ export const StyledDivCameras = styled.div`
     white-space: nowrap;
     text-overflow: ellipsis;
 
-    font-size: 1rem;
+    font-size: 0.8rem;
   }
 `;

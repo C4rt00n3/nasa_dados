@@ -25,7 +25,7 @@ export function Modaloption({ setOption }: IModalOption) {
 
   const { rover } = useContext(ContextRovers);
   return (
-    <StyledModalOption onChange={() => setOption(false)}>
+    <StyledModalOption>
       <div className="header_modal">
         <img src={logo} alt="Espaço há mais" />
         <button

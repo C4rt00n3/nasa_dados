@@ -24,10 +24,10 @@ export function InputDiaSolar() {
   }
 
   function inputDaySolar(name: number) {
-    setPage(1);
     setSun(name);
     setIten([]);
     setBackup([]);
+    setPage(1);
   }
   return (
     <StyledInptSolar>
@@ -42,7 +42,7 @@ export function InputDiaSolar() {
           onInput={(event: React.ChangeEvent<HTMLInputElement>) =>
             inputDaySolar(Number(event.currentTarget.value))
           }
-          value={sun > 0 ? sun : ""}
+          value={sun}
           placeholder="1000"
           type="number"
         />
