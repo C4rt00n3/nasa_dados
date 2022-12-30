@@ -25,7 +25,7 @@ export function ListPhotos({
           <Card
             setScrollPosition={setScrollPosition}
             setImagem={setImagem}
-            key={element.id}
+            key={i}
             setModalImg={setModalImg}
             element={element}
             setOption={setOption}

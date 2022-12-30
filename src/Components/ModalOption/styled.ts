@@ -2,7 +2,9 @@ import styled from "styled-components";
 
 export const StyledModalOption = styled.div`
   height: 100%;
-  width: 30%;
+  width: 35%;
+  min-width: 320px;
+  max-width: 500px;
 
   display: flex;
   flex-direction: column;
@@ -26,13 +28,6 @@ export const StyledModalOption = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-  }
-
-  .cam_rovers {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    gap: 15px;
   }
   .rovers {
     display: flex;

@@ -41,4 +41,7 @@ export interface IProviderValue {
   rover: string;
   setPage: React.Dispatch<React.SetStateAction<number>>;
   page: number;
+  filteCams(name: string): Promise<void>;
+  setCheck: React.Dispatch<React.SetStateAction<boolean>>;
+  check: boolean;
 }

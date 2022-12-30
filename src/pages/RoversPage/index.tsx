@@ -4,7 +4,7 @@ import Img1 from "../../Img/curiosity.jpg";
 import Img2 from "../../Img/opportunity.jpg";
 import Img3 from "../../Img/spirit.jpg";
 
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Modaloption } from "../../Components/ModalOption";
 import { ListPhotos } from "./ListPhotos";
 import { ContextRovers } from "../../Context/ContextRovers/ContextRovers";
@@ -17,7 +17,19 @@ export function RoversPage() {
   const [imagem, setImagem] = useState("");
   const [scrollPosition, setScrollPosition] = useState(0);
 
-  const { sun, rover, itens } = useContext(ContextRovers);
+  let unique = [
+    { name: "Miniature Thermal Emission Spectrometer (Mini-TES)", list: false },
+    { name: "Panoramic Camera", list: false },
+    { name: "Navigation Camera", list: false },
+    { name: "Mars Descent Imager", list: false },
+    { name: "Mars Hand Lens Imager", list: false },
+    { name: "Chemistry and Camera Complex", list: false },
+    { name: "Mast Camera", list: false },
+    { name: "Rear Hazard Avoidance Camera", list: false },
+    { name: "Front Hazard Avoidance Camera", list: false },
+  ];
+
+  const { sun, rover, itens, check } = useContext(ContextRovers);
 
   const sizeMonitor = window.outerHeight;
 
@@ -54,7 +66,7 @@ export function RoversPage() {
           setModalImg={setModalImg}
         />
       )}
-      {option && <Modaloption setOption={setOption} />}
+      {option && <Modaloption unique={unique} setOption={setOption} />}
       <div className="div_img_nasa">
         <img src={newRover} alt="" />
       </div>
@@ -75,7 +87,7 @@ export function RoversPage() {
       ) : (
         ""
       )}
-      <span className="end"></span>
+      {check && <span className="end">testt</span>}
     </StyledMainPage>
   );
 }

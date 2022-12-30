@@ -8,6 +8,8 @@ export const StyledCard = styled.li<istyledLi>`
   height: 340px;
 
   background: url(${({ IMG }) => IMG});
+  background-repeat: no-repeat;
+  background-size: cover;
 
   :hover {
     border: solid 1px var(--Withe);

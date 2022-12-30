@@ -7,6 +7,8 @@ import {
   IRootObject,
 } from "./types";
 
+const keyApi = "Rch4gMGLMCL8A7Pn9gWbvbeYI8NMUGazYaJitp7K";
+
 export const ContextRovers = createContext({} as IProviderValue);
 
 export function ProviderContextRovers({ children }: iAuthContext) {
@@ -15,6 +17,7 @@ export function ProviderContextRovers({ children }: iAuthContext) {
   const [rover, setRover] = useState<string>("Curiosity");
   const [sun, setSun] = useState<number>(1000);
   const [page, setPage] = useState<number>(1);
+  const [check, setCheck] = useState(true);
 
   useEffect(() => {
     async function Get() {
@@ -24,7 +27,7 @@ export function ProviderContextRovers({ children }: iAuthContext) {
           {
             params: {
               sol: sun,
-              api_key: "Rch4gMGLMCL8A7Pn9gWbvbeYI8NMUGazYaJitp7K",
+              api_key: keyApi,
               page: Number(page),
             },
           }
@@ -32,9 +35,8 @@ export function ProviderContextRovers({ children }: iAuthContext) {
         const { data } = response;
         const { photos } = data;
         if (photos.length) {
-          const NewPhotos = [...itens, ...photos];
-          setIten(NewPhotos);
-          setBackup(NewPhotos);
+          setIten([...itens, ...photos]);
+          setBackup([...itens, ...photos]);
         }
       } catch (error) {
         console.log(error);
@@ -56,8 +58,28 @@ export function ProviderContextRovers({ children }: iAuthContext) {
       intersect.observe(end);
     }
     return () => intersect.disconnect();
-  }, []);
+  }, [check]);
 
+  async function filteCams(name: string) {
+    try {
+      const response: IRootObject = await api.get(`/rovers/${rover}/photos?`, {
+        params: {
+          sol: sun,
+          api_key: keyApi,
+          camera: name,
+        },
+      });
+      const { data } = response;
+      const { photos } = data;
+      if (photos.length) {
+        setIten(photos);
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setCheck(false);
+    }
+  }
   return (
     <ContextRovers.Provider
       value={{
@@ -71,6 +93,9 @@ export function ProviderContextRovers({ children }: iAuthContext) {
         setSun,
         sun,
         rover,
+        filteCams,
+        setCheck,
+        check,
       }}
     >
       {children}
