@@ -12,7 +12,7 @@ interface iModalImagem {
 }
 
 export function ModalImg({ setModalImg, imagem, setImagem }: iModalImagem) {
-  const { itens, setPage, page } = useContext(ContextRovers);
+  const { itens, setPage, page, check } = useContext(ContextRovers);
 
   const newItens = itens.filter((element) => element.id === Number(imagem));
   const obj = newItens[0];
@@ -35,13 +35,13 @@ export function ModalImg({ setModalImg, imagem, setImagem }: iModalImagem) {
             const objRef = itens[i - 1];
             objRef && setImagem(objRef.id + "");
           }, 100);
-        } else {
+        } else if (move !== "left" && i < itens.length) {
           setTimeout(() => {
             const objRef = itens[i + 1];
             objRef && setImagem(objRef.id + "");
           }, 100);
 
-          if (i >= arr.length % 2) {
+          if (i >= arr.length % 2 && check) {
             setPage(page + 1);
           }
         }

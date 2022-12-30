@@ -98,7 +98,7 @@ export function Cameras() {
       uniqueUse = listCams;
     } else if (rover === "Perseverance") {
       const rovers = [
-        "Rover Up-Look Camera ",
+        "Rover Up-Look Camera",
         "Rover Down-Look Camera",
         "Descent Stage Down-Look Camera",
         "Parachute Up-Look Camera A",

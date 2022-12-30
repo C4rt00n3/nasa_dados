@@ -3,7 +3,7 @@ import { StyledMainPage } from "./styled";
 import Img1 from "../../Img/curiosity.jpg";
 import Img2 from "../../Img/opportunity.jpg";
 import Img3 from "../../Img/spirit.jpg";
-import Img4 from "../../Img/perseverance.jpeg";
+import Img4 from "../../Img/perseverance.jpg";
 
 import { useContext, useEffect, useState } from "react";
 import { Modaloption } from "../../Components/ModalOption";

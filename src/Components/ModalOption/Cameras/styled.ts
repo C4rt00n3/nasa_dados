@@ -20,7 +20,7 @@ export const StyledDivCameras = styled.div`
     padding: 10px;
     border-radius: 24px;
 
-    max-width: 120px;
+    max-width: 130px;
     max-height: 40px;
 
     display: flex;
@@ -30,6 +30,7 @@ export const StyledDivCameras = styled.div`
     :hover {
       background-color: var(--Information);
       opacity: 60%;
+      max-width: 150px;
     }
   }
   .normal {
