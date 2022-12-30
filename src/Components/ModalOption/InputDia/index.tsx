@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { ContextRovers } from "../../../Context/ContextRovers/ContextRovers";
+import { unique } from "../Cameras";
 import { StyledInptSolar } from "./styled";
 
 export function InputDiaSolar() {
@@ -11,11 +12,14 @@ export function InputDiaSolar() {
       setSun(sun - 1);
       setIten([]);
       setBackup([]);
+      localStorage.setItem("unique", JSON.stringify(unique));
     } else if (name === "sum") {
       setPage(1);
       setSun(sun + 1);
       setIten([]);
       setBackup([]);
+
+      localStorage.setItem("unique", JSON.stringify(unique));
     }
   }
 

@@ -1,11 +1,11 @@
 import { MainRoutes } from "./Routes";
 
-function App() {
-  return (
+const App = () => (
+  <>
     <div className="App">
       <MainRoutes />
     </div>
-  );
-}
+  </>
+);
 
 export default App;

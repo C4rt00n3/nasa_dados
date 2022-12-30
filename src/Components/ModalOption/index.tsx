@@ -5,17 +5,12 @@ import { BsFillBackspaceFill } from "react-icons/bs";
 import { InputDiaSolar } from "./InputDia";
 import { ContextRovers } from "../../Context/ContextRovers/ContextRovers";
 import { Cameras } from "./Cameras";
-interface iElement {
-  name: string;
-  list: boolean;
-}
 
 interface IModalOption {
   setOption: React.Dispatch<React.SetStateAction<boolean>>;
-  unique: iElement[];
 }
 
-export function Modaloption({ setOption, unique }: IModalOption) {
+export function Modaloption({ setOption }: IModalOption) {
   const { setRover, setIten, setBackup, setPage } = useContext(ContextRovers);
 
   function moveRover(string: string) {
@@ -26,14 +21,13 @@ export function Modaloption({ setOption, unique }: IModalOption) {
   }
   function close() {
     setOption(false);
-    console.log(unique);
   }
 
   const { rover } = useContext(ContextRovers);
   return (
     <StyledModalOption onChange={() => setOption(false)}>
       <div className="header_modal">
-        <img src={logo} alt="" />
+        <img src={logo} alt="Espaço há mais" />
         <button
           onClick={() => close()}
           className="close_modal"
@@ -54,12 +48,21 @@ export function Modaloption({ setOption, unique }: IModalOption) {
           id="rovers"
         >
           <option className="opHidden">{rover}</option>
-          <option value="Opportunity">Opportunity</option>
-          <option value="Spirit">Spirit</option>
-          <option value="Curiosity">Curiosity</option>
+          <option className="oppt" value="Opportunity">
+            Opportunity
+          </option>
+          <option className="oppt" value="Spirit">
+            Spirit
+          </option>
+          <option className="oppt" value="Curiosity">
+            Curiosity
+          </option>
+          <option className="oppt" value="Perseverance">
+            Perseveranc
+          </option>
         </select>
 
-        <Cameras unique={unique} />
+        <Cameras />
       </div>
     </StyledModalOption>
   );

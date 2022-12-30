@@ -14,8 +14,8 @@ export const ContextRovers = createContext({} as IProviderValue);
 export function ProviderContextRovers({ children }: iAuthContext) {
   const [itens, setIten] = useState([] as IPhotosItem[]);
   const [backup, setBackup] = useState([] as IPhotosItem[]);
-  const [rover, setRover] = useState<string>("Curiosity");
-  const [sun, setSun] = useState<number>(1000);
+  const [rover, setRover] = useState<string>("Perseverance");
+  const [sun, setSun] = useState<number>(0);
   const [page, setPage] = useState<number>(1);
   const [check, setCheck] = useState(true);
 
@@ -35,11 +35,13 @@ export function ProviderContextRovers({ children }: iAuthContext) {
         const { data } = response;
         const { photos } = data;
         if (photos.length) {
-          setIten([...itens, ...photos]);
-          setBackup([...itens, ...photos]);
+          setIten((e) => [...e, ...photos]);
+          setBackup((e) => [...e, ...photos]);
         }
       } catch (error) {
         console.log(error);
+      } finally {
+        setCheck(true);
       }
     }
     Get();

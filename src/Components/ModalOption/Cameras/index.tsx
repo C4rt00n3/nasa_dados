@@ -4,84 +4,126 @@ import { StyledDivCameras } from "./styled";
 interface iElement {
   name: string;
   list: boolean;
+  sigla: string;
 }
-interface iCameras {
-  unique: iElement[];
-}
+export const unique = [
+  {
+    name: "Miniature Thermal Emission Spectrometer (Mini-TES)",
+    list: false,
+    sigla: "MINITES",
+  },
+  { name: "Panoramic Camera", list: false, sigla: "PANCAM" },
+  { name: "Navigation Camera", list: false, sigla: "NAVCAM" },
+  { name: "Mars Descent Imager", list: false, sigla: "MARDI" },
+  { name: "Mars Hand Lens Imager", list: false, sigla: "MAHLI" },
+  { name: "Chemistry and Camera Complex", list: false, sigla: "CHEMCAM" },
+  { name: "Mast Camera", list: false, sigla: "MAST" },
+  { name: "Rear Hazard Avoidance Camera", list: false, sigla: "RHAZ" },
+  { name: "Front Hazard Avoidance Camera", list: false, sigla: "FHAZ" },
 
-export function Cameras({ unique }: iCameras) {
-  const { rover, setIten, backup, filteCams, setCheck } =
+  { name: "Rover Up-Look Camera ", list: false, sigla: "EDL_RDCAM" },
+  { name: "Rover Down-Look Camera", list: false, sigla: "EDL_RDCAM" },
+  { name: "Descent Stage Down-Look Camera", list: false, sigla: "EDL_DDCAM" },
+  { name: "Parachute Up-Look Camera A", list: false, sigla: "EDL_PUCAM1" },
+  { name: "Parachute Up-Look Camera B", list: false, sigla: "EDL_PUCAM2" },
+  { name: "Navigation Camera - Left", list: false, sigla: "NAVCAM_LEFT" },
+  { name: "Navigation Camera - Right ", list: false, sigla: "NAVCAM_RIGHT" },
+  { name: "Mast Camera Zoom - Right", list: false, sigla: "MCZ_RIGHT" },
+  { name: "Mast Camera Zoom - Left", list: false, sigla: "MCZ_LEFT" },
+  {
+    name: "Front Hazard Avoidance Camera - Left",
+    list: false,
+    sigla: "FRONT_HAZCAM_LEFT_A",
+  },
+  {
+    name: "Front Hazard Avoidance Camera - Right",
+    list: false,
+    sigla: "FRONT_HAZCAM_RIGHT_A ",
+  },
+  {
+    name: "Rear Hazard Avoidance Camera - Left",
+    list: false,
+    sigla: "REAR_HAZCAM_LEFT ",
+  },
+  {
+    name: "Rear Hazard Avoidance Camera - Right",
+    list: false,
+    sigla: "REAR_HAZCAM_RIGHT",
+  },
+  { name: "MEDA Skycam", list: false, sigla: "SKYCAM" },
+  { name: "SHERLOC WATSON Camera ", list: false, sigla: "SHERLOC_WATSON " },
+];
+
+export function Cameras() {
+  const dataUnique = localStorage.getItem("unique");
+
+  let uniqueUse = [...unique];
+
+  if (dataUnique) {
+    uniqueUse = JSON.parse(dataUnique);
+  }
+
+  const { rover, setIten, backup, filteCams, setCheck, check } =
     useContext(ContextRovers);
 
   function camsRovers() {
     if (rover === "Curiosity") {
-      unique = [
-        { name: "Navigation Camera", list: false },
-        { name: "Mars Descent Imager", list: false },
-        { name: "Mars Hand Lens Imager", list: false },
-        { name: "Chemistry and Camera Complex", list: false },
-        { name: "Mast Camera", list: false },
-        { name: "Rear Hazard Avoidance Camera", list: false },
-        { name: "Front Hazard Avoidance Camera", list: false },
+      const rovers = [
+        "Navigation Camera",
+        "Mars Descent Imager",
+        "Mars Hand Lens Imager",
+        "Chemistry and Camera Complex",
+        "Mast Camera",
+        "Rear Hazard Avoidance Camera",
+        "Front Hazard Avoidance Camera",
       ];
+      const listCams = unique.filter(
+        (element) => rovers.some((e) => e === element.name) && element
+      );
+
+      uniqueUse = listCams;
     } else if (rover === "Opportunity" || rover === "Spirit") {
-      unique = [
-        { name: "Rear Hazard Avoidance Camera", list: false },
-        { name: "Front Hazard Avoidance Camera", list: false },
-        {
-          name: "Miniature Thermal Emission Spectrometer (Mini-TES)",
-          list: false,
-        },
-        { name: "Panoramic Camera", list: false },
-        { name: "Navigation Camera", list: false },
+      const rovers = [
+        "Rear Hazard Avoidance Camera",
+        "Front Hazard Avoidance Camera",
+        "Miniature Thermal Emission Spectrometer (Mini-TES)",
+        "Panoramic Camera",
+        "Navigation Camera",
       ];
+
+      const listCams = unique.filter(
+        (element) => rovers.some((e) => e === element.name) && element
+      );
+
+      uniqueUse = listCams;
+    } else if (rover === "Perseverance") {
+      const rovers = [
+        "Rover Up-Look Camera ",
+        "Rover Down-Look Camera",
+        "Descent Stage Down-Look Camera",
+        "Parachute Up-Look Camera A",
+        "Parachute Up-Look Camera B",
+        "Navigation Camera - Left",
+        "Navigation Camera - Right ",
+        "Mast Camera Zoom - Right",
+        "Mast Camera Zoom - Left",
+        "Front Hazard Avoidance Camera - Left",
+        "Front Hazard Avoidance Camera - Right",
+        "Rear Hazard Avoidance Camera - Left",
+        "Rear Hazard Avoidance Camera - Right",
+        "MEDA Skycam",
+        "SHERLOC WATSON Camera ",
+      ];
+
+      const listCams = unique.filter(
+        (element) => rovers.some((e) => e === element.name) && element
+      );
+      uniqueUse = listCams;
     }
   }
-
   camsRovers();
 
-  function convertName(name: string) {
-    let newName = "";
-    switch (name) {
-      case "Front Hazard Avoidance Camera":
-        newName = "FHAZ";
-        break;
-      case "Rear Hazard Avoidance Camera":
-        newName = "RHAZ";
-        break;
-
-      case "Mast Camera":
-        newName = "MAST";
-        break;
-
-      case "Chemistry and Camera Complex":
-        newName = "CHEMCAM";
-        break;
-
-      case "Mars Hand Lens Imager":
-        newName = "MAHLI";
-        break;
-
-      case "Mars Descent Imager":
-        newName = "MARDI";
-        break;
-
-      case "Navigation Camera":
-        newName = "NAVCAM";
-        break;
-
-      case "Panoramic Camera":
-        newName = "PANCAM";
-        break;
-
-      case "Miniature Thermal Emission Spectrometer (Mini-TES)":
-        newName = "MINITES";
-        break;
-    }
-
-    return newName;
-  }
-  const [newUnique, setNewUnique] = useState(unique as iElement[]);
+  const [newUnique, setNewUnique] = useState(uniqueUse as iElement[]);
 
   function buttonFilter(
     event: React.MouseEvent<HTMLLIElement, MouseEvent>,
@@ -104,33 +146,38 @@ export function Cameras({ unique }: iCameras) {
       const arr = unique.filter((e) => e.name !== element.name);
 
       arr.splice(i, 0, element);
+
+      localStorage.setItem("unique", JSON.stringify(arr));
+
       newArr.splice(i, 0, element);
 
-      unique = [...arr];
-      console.log(unique);
+      uniqueUse = [...arr];
 
       event.currentTarget.className = "blue";
 
       setNewUnique(newArr);
 
-      filteCams(convertName(name));
+      filteCams(element.sigla);
       setCheck(false);
     } else if (event.currentTarget.className === "blue") {
       element.list = false;
 
       const newArr = newUniq.filter((element) => element.name !== name);
       const arr = unique.filter((e) => e.name !== element.name);
+
       newArr.splice(i, 0, element);
       arr.splice(i, 0, element);
-      unique = [...arr];
+
+      uniqueUse = [...arr];
+
+      localStorage.setItem("unique", JSON.stringify(arr));
 
       console.log(unique);
+
       setNewUnique(newArr);
       setCheck(true);
       setIten([...backup]);
     }
-
-    console.log(unique);
   }
 
   function toRestore() {
@@ -162,7 +209,7 @@ export function Cameras({ unique }: iCameras) {
         {newUnique.map((element, i) => (
           <li
             key={i}
-            className={element.list ? "blue" : "normal"}
+            className={!check && element.list ? "blue" : "normal"}
             onClick={(event) => buttonFilter(event, element, i)}
           >
             <p>{element.name}</p>

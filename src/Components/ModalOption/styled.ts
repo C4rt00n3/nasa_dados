@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const StyledModalOption = styled.div`
   height: 100%;
   width: 35%;
-  min-width: 320px;
+  min-width: 400px;
   max-width: 500px;
 
   display: flex;
@@ -28,6 +28,11 @@ export const StyledModalOption = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    img {
+      width: 80%;
+      max-width: 250px;
+    }
   }
   .rovers {
     display: flex;
@@ -51,7 +56,7 @@ export const StyledModalOption = styled.div`
 
     border: none;
     border-radius: 4px;
-    option {
+    .oppt {
       height: 35px;
     }
   }
@@ -69,15 +74,23 @@ export const StyledModalOption = styled.div`
       height: 24px;
     }
   }
-  select {
-    .opHidden {
-      width: 0;
-      height: 0;
+  .opHidden {
+    width: 0;
+    height: 0;
 
-      background: none;
+    background: none;
 
-      font-size: 0;
-      font-weight: 0;
-    }
+    font-size: 0;
+    font-weight: 0;
+
+    padding: 0;
+    margin: 0;
+
+    min-height: 0;
+    max-height: 0;
+
+    position: absolute;
+    bottom: 0;
+    display: flex;
   }
 `;
